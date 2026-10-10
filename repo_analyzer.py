@@ -9,6 +9,7 @@ This tool supports multiple AI providers (Claude, GPT, Gemini), handles monorepo
 multi-language projects, and provides detailed analysis of project structure and
 build processes.
 
+
 Author: Jahnavi Tadiparthi
 Version: 1.0.0
 License: MIT License
