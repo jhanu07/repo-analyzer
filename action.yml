@@ -1,0 +1,92 @@
+name: 'AI Repository Analyzer'
+description: 'Analyze repositories using AI to detect technologies, architecture, and build commands'
+author: 'bd-SrinathAkkem'
+
+branding:
+  icon: 'search'
+  color: 'blue'
+
+inputs:
+  repo_url:
+    description: 'GitHub repository URL to analyze'
+    required: true
+  model:
+    description: 'AI model to use (claude-sonnet, gpt-4, etc.)'
+    required: false
+    default: 'claude-sonnet'
+  config_file:
+    description: 'Path to configuration file'
+    required: false
+  ai_api_key:
+    description: 'Universal AI API key for all AI providers (Claude, OpenAI, Gemini)'
+    required: true
+  github_token:
+    description: 'GitHub token for private repositories'
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  analysis_file:
+    description: 'Path to the generated analysis JSON file'
+  technologies:
+    description: 'Comma-separated list of detected technologies'
+  architecture:
+    description: 'Detected architecture type'
+  build_commands:
+    description: 'JSON object containing extracted build commands'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up environment
+      shell: bash
+      run: |
+        echo "REPO_URL=${{ inputs.repo_url }}" >> $GITHUB_ENV
+        echo "MODEL=${{ inputs.model }}" >> $GITHUB_ENV
+        echo "CONFIG_FILE=${{ inputs.config_file }}" >> $GITHUB_ENV
+        echo "AI_API_KEY=${{ inputs.ai_api_key }}" >> $GITHUB_ENV
+        echo "GITHUB_TOKEN=${{ inputs.github_token }}" >> $GITHUB_ENV
+        echo "OUTPUT_DIR=$GITHUB_WORKSPACE/output" >> $GITHUB_ENV
+
+    - name: Run Repository Analyzer
+      shell: bash
+      run: |
+        cd ${{ github.action_path }}
+        chmod +x run_repo_analyzer.sh
+        ./run_repo_analyzer.sh "${{ inputs.repo_url }}" "${{ inputs.model }}" "${{ inputs.config_file }}"
+
+    - name: Set outputs
+      shell: bash
+      run: |
+        # Find the output file
+        OUTPUT_FILE=$(find "$OUTPUT_DIR" -name "*_latest.json" -type f 2>/dev/null | head -n 1)
+        if [ -z "$OUTPUT_FILE" ]; then
+          OUTPUT_FILE=$(find ${{ github.action_path }} -name "*_latest.json" -type f 2>/dev/null | head -n 1)
+        fi
+        if [ -z "$OUTPUT_FILE" ]; then
+          OUTPUT_FILE=$(find . -name "*_latest.json" -type f 2>/dev/null | head -n 1)
+        fi
+
+        if [ -f "$OUTPUT_FILE" ]; then
+          echo "analysis_file=$OUTPUT_FILE" >> $GITHUB_OUTPUT
+
+          # Extract and set additional outputs using jq or fallback
+          if command -v jq >/dev/null 2>&1; then
+            TECHNOLOGIES=$(jq -r '.repository_analysis.technology_stack | join(",")' "$OUTPUT_FILE" 2>/dev/null || echo "")
+            ARCHITECTURE=$(jq -r '.repository_analysis.architecture_type // "unknown"' "$OUTPUT_FILE" 2>/dev/null || echo "unknown")
+            BUILD_COMMANDS=$(jq -c '.commands // {}' "$OUTPUT_FILE" 2>/dev/null || echo "{}")
+          else
+            TECHNOLOGIES=""
+            ARCHITECTURE="unknown"
+            BUILD_COMMANDS="{}"
+          fi
+
+          echo "technologies=$TECHNOLOGIES" >> $GITHUB_OUTPUT
+          echo "architecture=$ARCHITECTURE" >> $GITHUB_OUTPUT
+          echo "build_commands<<EOF" >> $GITHUB_OUTPUT
+          echo "$BUILD_COMMANDS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+        else
+          echo "::error::No analysis output file found"
+          exit 1
+        fi
