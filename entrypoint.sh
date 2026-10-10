@@ -4,6 +4,7 @@
 set -e
 
 
+
 # Set up logging
 LOG_FILE="/tmp/action.log"
 log() {
