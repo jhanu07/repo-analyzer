@@ -26,7 +26,7 @@ A production-grade tool for analyzing GitHub repositories using AI models (Claud
 
 ```bash
 # Clone the repository
-git clone https://github.com/bd-SrinathAkkem/repo-analyzer.git
+git clone https://github.com/bd-Jahnavi/repo-analyzer.git
 cd repo-analyzer
 
 # Set up virtual environment
@@ -72,7 +72,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: bd-SrinathAkkem/repo-analyzer/.github/workflows/analyze_repo.yml@main
+      - uses: bd-Jahnavi/repo-analyzer/.github/workflows/analyze_repo.yml@main
         with:
           repo_url: https://github.com/${{ inputs.repo_url }}
           model: ${{ inputs.model }}
@@ -94,7 +94,7 @@ on: [workflow_dispatch]
 
 jobs:
   analyze-build:
-    uses: bd-SrinathAkkem/repo-analyzer/.github/workflows/analyze_repo.yml@main
+    uses: bd-Jahnavi/repo-analyzer/.github/workflows/analyze_repo.yml@main
     with:
       repo_url: https://github.com/facebook/react
       model: sonnet
@@ -202,7 +202,7 @@ name: CI
 on: [push]
 jobs:
   build:
-    uses: bd-SrinathAkkem/repo-analyzer/.github/workflows/build_project.yml@main
+    uses: bd-Jahnavi/repo-analyzer/.github/workflows/build_project.yml@main
     secrets: inherit
 ```
 
@@ -240,9 +240,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/bd-SrinathAkkem/repo-analyzer/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/bd-SrinathAkkem/repo-analyzer/discussions)
-- **Email**: reddyakkem@blackduck.com
+- **Issues**: [GitHub Issues](https://github.com/bd-Jahnavi/repo-analyzer/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/bd-Jahnavi/repo-analyzer/discussions)
+- **Email**: thadiparthijahnavi@gmail.com
 
 ---
 
