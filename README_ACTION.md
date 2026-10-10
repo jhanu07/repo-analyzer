@@ -12,6 +12,7 @@ A GitHub Action that uses AI to analyze repositories and detect technologies, ar
 - ✅ **Windows** (windows-latest)
 - ✅ **Self-hosted runners** (all platforms)
 
+
 ```yaml
 name: Analyze Repository
 on: [push]
