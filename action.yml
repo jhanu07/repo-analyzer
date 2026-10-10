@@ -6,6 +6,7 @@ branding:
   icon: 'search'
   color: 'blue'
 
+
 inputs:
   repo_url:
     description: 'GitHub repository URL to analyze'
