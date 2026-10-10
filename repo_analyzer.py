@@ -9,13 +9,13 @@ This tool supports multiple AI providers (Claude, GPT, Gemini), handles monorepo
 multi-language projects, and provides detailed analysis of project structure and
 build processes.
 
-Author: SrinathAkkem/Black Duck Software
+Author: Jahnavi Tadiparthi
 Version: 1.0.0
 License: MIT License
 Created: 2024
 Last Modified: 2024
 
-Repository: https://github.com/SrinathAkkem/repo-analyzer
+Repository: https://github.com/Jahnavi/repo-analyzer
 Documentation: https://docs.example.com/repo-analyzer
 
 Dependencies:
@@ -40,7 +40,7 @@ Usage:
 License:
     MIT License
     
-    Copyright (c) 2024 SrinathAkkem/Black Duck Software
+    Copyright (c) 2024 Jahnavi
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -79,8 +79,8 @@ import openai
 
 # Version information
 __version__ = "1.0.0"
-__author__ = "SrinathAkkem/Black Duck Software"
-__email__ = "reddyakkem@blackduck.com"
+__author__ = "Jahnavi"
+__email__ = "thadiparthijahnavi@gmail.com"
 __license__ = "MIT"
 
 # Centralized constants for all hardcoded values
@@ -2044,8 +2044,8 @@ CONFIGURATION:
     base_url = "https://custom-ai-endpoint.com/v1"
 
 SUPPORT:
-    Repository: https://github.com/SrinathAkkem/repo-analyzer
-    Issues: https://github.com/SrinathAkkem/repo-analyzer/issues
+    Repository: https://github.com/Jahnavi/repo-analyzer
+    Issues: https://github.com/jhanu_07/repo-analyzer/issues
     Documentation: https://docs.example.com/repo-analyzer
 """
     print(usage_text)
