@@ -14,6 +14,7 @@ A production-grade tool for analyzing GitHub repositories using AI models (Claud
 - **CI/CD Ready**: Reusable GitHub Actions workflow for automated analysis and building
 - **Smart Tool Installation**: Automatically installs required tools (JDK, Maven, Node.js, npm, etc.) based on analysis
 
+
 ## 📋 Quick Start
 
 ### Prerequisites
