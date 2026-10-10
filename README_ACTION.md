@@ -20,7 +20,7 @@ jobs:
   analyze:
     runs-on: ubuntu-latest  # or macos-latest, self-hosted, etc.
     steps:
-      - uses: bd-SrinathAkkem/repo-analyzer@v1
+      - uses: bd-Jahnavi/repo-analyzer@v1
         with:
           repo_url: 'https://github.com/facebook/react'
           ai_api_key: ${{ secrets.AI_API_KEY }}
@@ -41,7 +41,7 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - uses: bd-SrinathAkkem/repo-analyzer@v1
+      - uses: bd-Jahnavi/repo-analyzer@v1
         id: analyzer
         with:
           repo_url: ${{ inputs.repository_url }}
@@ -99,9 +99,9 @@ jobs:
     runs-on: self-hosted  # Your macOS ARM runner
     steps:
       - uses: actions/checkout@v4
-      - uses: bd-SrinathAkkem/repo-analyzer@v1
+      - uses: bd-Jahnavi/repo-analyzer@v1
         with:
-          repo_url: 'https://github.com/bd-SrinathAkkem/WebGoat'
+          repo_url: 'https://github.com/bd-Jahnavi/WebGoat'
           ai_api_key: ${{ secrets.AI_API_KEY }}  # Single universal key
 ```
 
@@ -137,7 +137,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: bd-SrinathAkkem/repo-analyzer@v1
+      - uses: bd-Jahnavi/repo-analyzer@v1
         with:
           repo_url: ${{ github.server_url }}/${{ github.repository }}
           ai_api_key: ${{ secrets.AI_API_KEY }}
@@ -158,7 +158,7 @@ jobs:
           - 'https://github.com/vuejs/vue'
           - 'https://github.com/angular/angular'
     steps:
-      - uses: bd-SrinathAkkem/repo-analyzer@v1
+      - uses: bd-Jahnavi/repo-analyzer@v1
         with:
           repo_url: ${{ matrix.repo }}
           model: 'claude-sonnet'
@@ -174,7 +174,7 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - uses: bd-SrinathAkkem/repo-analyzer@v1
+      - uses: bd-Jahnavi/repo-analyzer@v1
         id: analyzer
         with:
           repo_url: 'https://github.com/facebook/react'
