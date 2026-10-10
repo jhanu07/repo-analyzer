@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-LABEL maintainer="bd-SrinathAkkem"
+LABEL maintainer="bd-Jahnavi"
 LABEL version="1.0"
 LABEL description="AI-powered repository analyzer for GitHub Actions"
 
